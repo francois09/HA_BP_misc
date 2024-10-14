@@ -62,6 +62,7 @@ action:
     - condition: state
       entity_id: !input aperture_sensor
       state: 'on'
+      match: any
     sequence:
     - service: notify.send_message
       data:
