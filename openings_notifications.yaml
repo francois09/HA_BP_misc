@@ -25,6 +25,18 @@ blueprint:
         entity:
           domain: device_tracker
           multiple: true
+    message_title:
+      name: Title of the message
+      description: Title used when sending the notification
+      selector:
+        text:
+          type: text
+    message_body:
+      name: Body of the message
+      description: Body used when sending the notification
+      selector:
+        text:
+          type: text
 
 mode: queued
 max_exceeded: silent
@@ -51,6 +63,6 @@ action:
     sequence:
     - service: notify.send_message
       data:
-        message: "a message"
-        title: "a title"
+        message: !input message_body
+        title: !input message_title
         entity_id: !input phone_device
