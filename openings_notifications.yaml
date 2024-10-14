@@ -44,15 +44,17 @@ max_exceeded: silent
 trigger:
 - platform: state
   entity_id: !input aperture_sensor
+  state: 'on'
 - platform: zone
   entity_id: !input person_location
   zone: zone.home
   event: leave
 
-# condition:
-#   - condition: state
-#     entity_id: !input winter_mode_boolean
-#     state: 'on'
+condition:
+- condition: zone
+  entity_id: !input person_location
+  zone: zone.home
+  event: leave
 
 action:
 - choose:
