@@ -44,7 +44,7 @@ max_exceeded: silent
 trigger:
 - platform: state
   entity_id: !input aperture_sensor
-  state: 'on'
+  to: 'on'
 - platform: zone
   entity_id: !input person_location
   zone: zone.home
