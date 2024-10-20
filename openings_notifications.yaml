@@ -53,9 +53,10 @@ trigger:
 
 condition:
   - condition: not
-    - condition: zone
-      entity_id: !input person_location
-      state: zone.home
+    conditions:
+      - condition: zone
+        entity_id: !input person_location
+        state: zone.home
 
 action:
 - choose:
