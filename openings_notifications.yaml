@@ -18,12 +18,13 @@ blueprint:
         entity:
           domain: device_tracker
           multiple: true
-    phone_device:
-      name: Person device
+    notify_device:
+      name: Device to notify
       description: Device to use for notification
       selector:
-        entity:
-          domain: mobile_app
+        device:
+          filter:
+            - integration: mobile_app
           multiple: true
     message_title:
       name: Title of the message
@@ -68,4 +69,4 @@ action:
       data:
         message: !input message_body
         title: !input message_title
-        entity_id: !input phone_device
+        entity_id: !input notify_device
