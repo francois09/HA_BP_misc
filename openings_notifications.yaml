@@ -56,7 +56,7 @@ condition:
     conditions:
       - condition: zone
         entity_id: !input person_location
-        state: zone.home
+        zone: zone.home
 
 action:
 - choose:
