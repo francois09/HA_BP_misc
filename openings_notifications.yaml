@@ -52,10 +52,10 @@ trigger:
   event: leave
 
 condition:
-- condition: zone
-  entity_id: !input person_location
-  zone: zone.home
-  event: leave
+  - condition: not
+    - condition: zone
+      entity_id: !input person_location
+      state: zone.home
 
 action:
 - choose:
