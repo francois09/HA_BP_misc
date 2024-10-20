@@ -20,10 +20,10 @@ blueprint:
           multiple: true
     phone_device:
       name: Person device
-      description: People device to use for notification
+      description: Device to use for notification
       selector:
         entity:
-          domain: device_tracker
+          domain: mobile_app
           multiple: true
     message_title:
       name: Title of the message
