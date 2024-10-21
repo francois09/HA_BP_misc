@@ -69,4 +69,5 @@ action:
       - domain: mobile_app
         type: notify
         message: !input message_body
+        title: !input message_title
         device_id: !input notify_device
