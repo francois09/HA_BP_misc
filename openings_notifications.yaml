@@ -66,8 +66,7 @@ action:
       state: 'on'
       match: any
     sequence:
-    - service: notify.send_message
-      data:
+      - domain: mobile_app
+        type: notify
         message: !input message_body
-        title: !input message_title
-        entity_id: !input notify_device
+        device_id: !input notify_device
