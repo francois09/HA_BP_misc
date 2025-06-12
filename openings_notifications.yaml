@@ -18,6 +18,12 @@ blueprint:
         entity:
           domain: device_tracker
           multiple: false
+    presence_mode_boolean:
+      name: Presence info
+      description: Indicates if there is somebody home
+      selector:
+        entity:
+          domain: input_boolean
     notify_device:
       name: Device to notify
       description: Device to use for notification
@@ -50,13 +56,22 @@ trigger:
   entity_id: !input person_location
   zone: zone.home
   event: leave
+- platform: state
+  entity_id: !input presence_mode_boolean
 
 condition:
-  - condition: not
+  - condition: and
     conditions:
-      - condition: zone
-        entity_id: !input person_location
-        zone: zone.home
+    - condition: not
+      conditions:
+        - condition: zone
+          entity_id: !input person_location
+          zone: zone.home
+    - condition: not
+      conditions:
+        - condition: state
+          entity_id: !input presence_mode_boolean
+          state: 'on'
 
 action:
 - choose:
