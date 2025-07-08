@@ -11,13 +11,6 @@ blueprint:
         entity:
           domain: binary_sensor
           multiple: true
-    person_location:
-      name: Person location
-      description: People location used to be at home
-      selector:
-        entity:
-          domain: device_tracker
-          multiple: false
     presence_mode_boolean:
       name: Presence info
       description: Indicates if there is somebody home
@@ -52,26 +45,15 @@ trigger:
 - platform: state
   entity_id: !input aperture_sensor
   to: 'on'
-- platform: zone
-  entity_id: !input person_location
-  zone: zone.home
-  event: leave
 - platform: state
   entity_id: !input presence_mode_boolean
 
 condition:
-  - condition: and
+  - condition: not
     conditions:
-    - condition: not
-      conditions:
-        - condition: zone
-          entity_id: !input person_location
-          zone: zone.home
-    - condition: not
-      conditions:
-        - condition: state
-          entity_id: !input presence_mode_boolean
-          state: 'on'
+      - condition: state
+        entity_id: !input presence_mode_boolean
+        state: 'on'
 
 action:
 - choose:
